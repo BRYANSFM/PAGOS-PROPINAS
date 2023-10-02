@@ -1,0 +1,25 @@
+.BotonPorciento {
+  flex: 1; /*Distribuye el espacio disponible de manera equitativas*/
+  margin: 5px; /* Margen entre los botones */
+  box-sizing: border-box; /* Incluye el margen en el ancho total del botón */
+}
+
+/* Estilos adicionales (opcional) */
+.BotonPorciento {
+  padding: 10px;
+  text-align: center;
+  background-color: rgb(0, 71, 75);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 22px;
+  flex: 1 1;
+  user-select: none;
+}
+
+.BotonPorciento:hover{
+  background-color: rgb(159, 232, 223);
+  color: rgb(0, 72, 70);
+}
