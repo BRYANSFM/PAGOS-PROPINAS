@@ -1,9 +1,8 @@
 import React from "react";
 import "../hojas-de-estilo/valores_calcular.css"
-import { useState } from "react";
 
-export function ValoresCalcular({nombre_de_pago, MontoPagar }) {
-  return(
+export function ValoresCalcular({ nombre_de_pago, MontoPagar }) {
+  return (
     <div className="contenedor_montos">
       <div className="contenedor_montos_izquierda">
         <div className="nombre_de_pago">
@@ -15,10 +14,9 @@ export function ValoresCalcular({nombre_de_pago, MontoPagar }) {
       </div>
       <div className="contenedor_montos_derecha">
         <div className="Monto">
-          ${MontoPagar>0 ?  MontoPagar : "0.00"}
-          {console.log(MontoPagar)}
+          ${MontoPagar || "0.00"}
         </div>
       </div>
-    </div>      
+    </div>
   );
 }

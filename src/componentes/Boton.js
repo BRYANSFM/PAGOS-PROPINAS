@@ -1,14 +1,14 @@
 import React from "react";
 import "../hojas-de-estilo/Boton.css"
 
-export function Boton(props) {
-  return(
-    <button 
+export function Boton({ amount, onClick, selectedTip }) {
+  return (
+    <button
       className="BotonPorciento"
-      onClick={ () =>
-      // props.disabled ===false  && 
-       props.manejarPorciento(props.children)}>
-      {props.children}%
+      onClick={onClick}
+      style={{ border: selectedTip === amount ? '3px solid red' : 'inherit' }}
+    >
+      {amount}%
     </button>
   )
 }

@@ -1,64 +1,42 @@
 import './App.css';
 import { Input } from "./componentes/Input";
 import { Boton } from "./componentes/Boton";
-import { Input_custom } from "./componentes/Input_custom";
+import { InputCustom } from "./componentes/Input_custom";
 import { ValoresCalcular } from "./componentes/ValoresCalcular";
 import { Reset } from "./componentes/Reset";
 import { useState } from "react";
 
+const formatNumber = (number) => parseFloat(number.toFixed(2))
+
 function App() {
-  
-  const[Total, setTotal] = useState('');
-  const[PorcientoTotal, setPorcientoTotal] = useState(0);
-  const[PorcientoPersona, setPorcientoPersona] = useState(0);
-  const[CantidadPersonas, setCantidadPersonas] = useState('');
-  const[PorcientoCustom, setPorcientoCustom ] = useState('');
-  const[EventoBoton, setEventoBoton ] = useState(false);
+  const [bill, setBill] = useState(0);
+  const [selectedTip, setSelectedTip] = useState(5);
+  const [numberPeople, setNumberPeople] = useState(1);
+  const tip = bill ? formatNumber(bill * (selectedTip / 100)) : 0;
+  const tipDividedByPerson = tip && numberPeople ? formatNumber(tip / numberPeople) : 0;
 
-  const ManejarCuenta = (valor) => {
-    setTotal(valor);
-  };
-
-  const Porciento = (valor) => {
-    setPorcientoTotal((Total*valor)/100);
-    setEventoBoton(true);
-    // setPorcientoTotal((parseFloat(PorcientoTotal)).toFixed(2));
-    // setPorcientoTotal((PorcientoTotal.toFixed(2)));
-
-  };
-  const InputPorciento = (valor) => {
-    setPorcientoTotal((Total*valor)/100);
-    setPorcientoCustom(valor);
-  };
-  const OtraCuenta = () => {
-    setPorcientoTotal(0);
-    setPorcientoPersona(0);
-    setTotal('');
-    setCantidadPersonas('');
-    setPorcientoCustom('');
-  };
-  const ManejarCuentaPersona = (valor) =>{
-    setPorcientoPersona(PorcientoTotal/valor);
-    // setPorcientoPersona((parseFloat(PorcientoPersona)).toFixed(2));
-    // setPorcientoPersona((PorcientoPersona.toFixed(2)));
-
-    setCantidadPersonas(valor);
+  function reset() {
+    setBill(0);
+    setSelectedTip(5);
+    setNumberPeople(0);
   }
+
+  console.log({ selectedTip })
+
   return (
     <div className="App">
       <div className='Encabezado'>
-      S  P  L  I  T  T  E R
+        S  P  L  I  T  T  E R
       </div>
       <div className='contenedor-pagos'>
         <div className='contenedor-izquierda'>
-          
-          <Input 
-            style = {{}}
-            label = "Bill"
-            validacion_icono = {false}
-            Cuenta = {ManejarCuenta}
-            ValorValue = {Total}
-            identificadorInput = {false}
+          <Input
+            style={{}}
+            label="Bill"
+            validacion_icono={false}
+            onChange={(e) => setBill(parseInt(e.currentTarget.value))}
+            ValorValue={bill}
+            identificadorInput={false}
           />
           <div className='label2'>
             Select Tip %
@@ -66,56 +44,71 @@ function App() {
           <div className='contenedor-botones'>
             <div className='fila'>
               <Boton
-              //  disabled={!Total} 
-               manejarPorciento = {Porciento}>5</Boton>
-              <Boton 
-                // disabled={!Total}  
-                manejarPorciento = {Porciento} >10</Boton>
-              <Boton manejarPorciento = {Porciento} >15</Boton>
+                selectedTip={selectedTip}
+                amount={5}
+                onClick={() => setSelectedTip(5)}
+              >5</Boton>
+              <Boton
+                selectedTip={selectedTip}
+                amount={10}
+                onClick={() => setSelectedTip(10)}
+              >10</Boton>
+              <Boton
+                selectedTip={selectedTip}
+                amount={15}
+                onClick={() => setSelectedTip(15)}
+              >15</Boton>
             </div>
             <div className='fila'>
-              <Boton 
-                // disabled={!Total} 
-                manejarPorciento = {Porciento} >25</Boton>
-              <Boton 
-                // disabled={!Total} 
-                manejarPorciento = {Porciento} >50</Boton>
-              <Input_custom
-                manejarPorciento = {InputPorciento}
-                ValorValue = {PorcientoCustom}/>
+              <Boton
+                selectedTip={selectedTip}
+                amount={25}
+                onClick={() => setSelectedTip(25)}
+              >25</Boton>
+              <Boton
+                selectedTip={selectedTip}
+                amount={50}
+                onClick={() => setSelectedTip(50)}
+              >50</Boton>
+              <InputCustom
+                onChange={e => setSelectedTip(parseInt(e.currentTarget.value))}
+                value={selectedTip}
+              />
             </div>
             <div className='espacio'>
               holas
             </div>
-            <Input 
-              label = "Number of People"
-              validacion_icono = {true}
-              Cuenta = {ManejarCuentaPersona}
-              ValorValue = {CantidadPersonas}
-              labelError = {CantidadPersonas > 0 || !CantidadPersonas ? "" : "Can't be zero" }
-              identificadorInput = {true}
+
+            <Input
+              label="Number of People"
+              validacion_icono={true}
+              onChange={(e) => setNumberPeople(parseInt(e.currentTarget.value))}
+              ValorValue={numberPeople}
+              // labelError={CantidadPersonas > 0 || !CantidadPersonas ? "" : "Can't be zero"}
+              identificadorInput={true}
 
             />
           </div>
         </div>
         <div className='contenedor-derecha'>
           <ValoresCalcular
-            nombre_de_pago = "Tip Amount"
+            nombre_de_pago="Tip Amount"
             // MontoPagar={CantidadPersonas >0 ? PorcientoPersona : 0}
             MontoPagar={
-              Total && CantidadPersonas && (EventoBoton || PorcientoCustom) && CantidadPersonas > 0 ? PorcientoPersona : 0
+              tip
             }
           />
           <ValoresCalcular
-            nombre_de_pago = "Total"
-            MontoPagar = {
-              Total && CantidadPersonas && (EventoBoton || PorcientoCustom) && CantidadPersonas > 0 ? PorcientoTotal : 0
+            nombre_de_pago="Total"
+            MontoPagar={
+              tipDividedByPerson
             }
+
           />
-          <Reset manejarReset = {OtraCuenta} />
+          <Reset manejarReset={reset} />
         </div>
       </div>
-      
+
     </div>
   );
 }

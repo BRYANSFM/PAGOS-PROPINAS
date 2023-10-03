@@ -1,18 +1,16 @@
 import React from "react";
 import "../hojas-de-estilo/Input_custom.css"
 
-export function Input_custom({ manejarPorciento, ValorValue }) {
-  const PorcientoCustom = (e) =>{
-    manejarPorciento(e.target.value);
-  };
-  return(
+export function InputCustom({ value, onChange }) {
+
+  return (
     <input
-    id="myInput2"
-    type="number"
-    name="number"
-    placeholder='Custom'
-    value={ValorValue}
-    onChange={PorcientoCustom}
+      id="myInput2"
+      type="number"
+      name="number"
+      placeholder='Custom'
+      value={value}
+      onChange={onChange}
     />
   );
 }

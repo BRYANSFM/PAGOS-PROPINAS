@@ -33,7 +33,7 @@ input::placeholder  {
   height: 20px;
   flex: 1;
   background-color: #f3f8fb;
-  direction: rtl;
+  /* direction: rtl; */
   outline: none;
   border-radius: 5px;
   border: none;
