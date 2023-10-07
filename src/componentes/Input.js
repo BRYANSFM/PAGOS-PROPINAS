@@ -1,7 +1,6 @@
 import React from 'react';
 import "../hojas-de-estilo/Input.css"
 import { BsFillPersonFill } from "react-icons/bs";
-import { useState } from "react";
 
 export function Input({ label, validacion_icono, onChange, ValorValue, labelError = "", identificadorInput }) {
 

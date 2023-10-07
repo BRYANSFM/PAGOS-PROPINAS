@@ -9,16 +9,17 @@ import { useState } from "react";
 const formatNumber = (number) => parseFloat(number.toFixed(2))
 
 function App() {
-  const [bill, setBill] = useState(0);
-  const [selectedTip, setSelectedTip] = useState(5);
-  const [numberPeople, setNumberPeople] = useState(1);
+  const [bill, setBill] = useState('');
+  const [selectedTip, setSelectedTip] = useState('');
+  const [numberPeople, setNumberPeople] = useState('');
+
   const tip = bill ? formatNumber(bill * (selectedTip / 100)) : 0;
   const tipDividedByPerson = tip && numberPeople ? formatNumber(tip / numberPeople) : 0;
 
   function reset() {
-    setBill(0);
-    setSelectedTip(5);
-    setNumberPeople(0);
+    setBill('');
+    setSelectedTip('');
+    setNumberPeople('');
   }
 
   console.log({ selectedTip })
@@ -84,7 +85,7 @@ function App() {
               validacion_icono={true}
               onChange={(e) => setNumberPeople(parseInt(e.currentTarget.value))}
               ValorValue={numberPeople}
-              // labelError={CantidadPersonas > 0 || !CantidadPersonas ? "" : "Can't be zero"}
+              // labelError={numberPeople > 0 || !numberPeople ? "" : "Can't be zero"}
               identificadorInput={true}
 
             />
@@ -94,9 +95,7 @@ function App() {
           <ValoresCalcular
             nombre_de_pago="Tip Amount"
             // MontoPagar={CantidadPersonas >0 ? PorcientoPersona : 0}
-            MontoPagar={
-              tip
-            }
+            MontoPagar={tip}
           />
           <ValoresCalcular
             nombre_de_pago="Total"
