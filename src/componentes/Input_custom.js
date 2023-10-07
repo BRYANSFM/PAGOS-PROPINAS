@@ -5,6 +5,7 @@ export function InputCustom({ value, onChange }) {
 
   return (
     <input
+      style={{ textAlign: 'right' }}
       id="myInput2"
       type="number"
       name="number"

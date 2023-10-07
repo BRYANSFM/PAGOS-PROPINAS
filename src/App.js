@@ -9,16 +9,16 @@ import { useState } from "react";
 const formatNumber = (number) => parseFloat(number.toFixed(2))
 
 function App() {
-  const [bill, setBill] = useState(0);
-  const [selectedTip, setSelectedTip] = useState(5);
-  const [numberPeople, setNumberPeople] = useState(1);
+  const [bill, setBill] = useState('');
+  const [selectedTip, setSelectedTip] = useState('');
+  const [numberPeople, setNumberPeople] = useState('');
   const tip = bill ? formatNumber(bill * (selectedTip / 100)) : 0;
   const tipDividedByPerson = tip && numberPeople ? formatNumber(tip / numberPeople) : 0;
 
   function reset() {
-    setBill(0);
-    setSelectedTip(5);
-    setNumberPeople(0);
+    setBill('');
+    setSelectedTip('');
+    setNumberPeople('');
   }
 
   console.log({ selectedTip })
@@ -47,36 +47,36 @@ function App() {
                 selectedTip={selectedTip}
                 amount={5}
                 onClick={() => setSelectedTip(5)}
-              >5</Boton>
+              />
               <Boton
                 selectedTip={selectedTip}
                 amount={10}
                 onClick={() => setSelectedTip(10)}
-              >10</Boton>
+              />
               <Boton
                 selectedTip={selectedTip}
                 amount={15}
                 onClick={() => setSelectedTip(15)}
-              >15</Boton>
+              />
             </div>
             <div className='fila'>
               <Boton
                 selectedTip={selectedTip}
                 amount={25}
                 onClick={() => setSelectedTip(25)}
-              >25</Boton>
+              />
               <Boton
                 selectedTip={selectedTip}
                 amount={50}
                 onClick={() => setSelectedTip(50)}
-              >50</Boton>
+              />
               <InputCustom
                 onChange={e => setSelectedTip(parseInt(e.currentTarget.value))}
                 value={selectedTip}
               />
             </div>
             <div className='espacio'>
-              holas
+              hola
             </div>
 
             <Input
@@ -86,7 +86,7 @@ function App() {
               ValorValue={numberPeople}
               // labelError={CantidadPersonas > 0 || !CantidadPersonas ? "" : "Can't be zero"}
               identificadorInput={true}
-
+              labelError={numberPeople ===0 && "Can't be zero"}
             />
           </div>
         </div>
@@ -94,21 +94,15 @@ function App() {
           <ValoresCalcular
             nombre_de_pago="Tip Amount"
             // MontoPagar={CantidadPersonas >0 ? PorcientoPersona : 0}
-            MontoPagar={
-              tip
-            }
+            MontoPagar={tip}
           />
           <ValoresCalcular
             nombre_de_pago="Total"
-            MontoPagar={
-              tipDividedByPerson
-            }
-
+            MontoPagar={tipDividedByPerson}
           />
           <Reset manejarReset={reset} />
         </div>
       </div>
-
     </div>
   );
 }
