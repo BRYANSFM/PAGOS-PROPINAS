@@ -6,7 +6,7 @@ export function Boton({ amount, onClick, selectedTip }) {
     <button
       className="BotonPorciento"
       onClick={onClick}
-      style={{ outiline: selectedTip === amount ? '3px solid red' : 'inherit' }}
+      style={{ outline: selectedTip === amount ? '3px solid red' : 'inherit' }} /*PRUEBA con GIT */
     >
       {amount}%
     </button>
