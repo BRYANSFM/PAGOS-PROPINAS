@@ -29,7 +29,7 @@ function App() {
       <div className='flex flex-wrap justify-center items-center text-gris mb-20 font-bold text-3xl w-28 h-20'>
         S  P  L  I  T  T  E R
       </div>
-      <div className='w-760 h-3/5 p-27 bg-white rounded-3xl shadow-custom flex flex-row'>
+      <div className='w-760 h-[430px] p-27 bg-white rounded-3xl shadow-custom flex flex-row'>
         <div className='mr-5 w-2/4 '>
           <Input
             style={{}}
