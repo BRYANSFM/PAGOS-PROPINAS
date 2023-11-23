@@ -87,7 +87,7 @@ function App() {
               ValorValue={numberPeople}
               // labelError={CantidadPersonas > 0 || !CantidadPersonas ? "" : "Can't be zero"}
               identificadorInput={true}
-              labelError={numberPeople ===0  && "must be greater than zero"}
+              labelError={numberPeople ===0  && "can't be zero"}
             />
           </div>
         </div>
